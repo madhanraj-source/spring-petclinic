@@ -13,7 +13,7 @@ pipeline {
         SONAR_TOKEN     = credentials('sonar-token')
         SONAR_ORG       = 'madhanraj-source'
         SONAR_PROJECT   = 'spring-petclinic'
-        NEXUS_URL       = 'http://43.205.111.180:8081'
+        NEXUS_URL       = '43.205.111.180:8081'
         NEXUS_CREDS     = credentials('nexus-credentials')
         DOCKER_IMAGE    = '43.205.111.180:8082/spring-petclinic'
     }
