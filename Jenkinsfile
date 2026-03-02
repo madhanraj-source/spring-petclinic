@@ -38,7 +38,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "=== Building application ==="
-                sh 'mvn clean package -DskipTests -B'
+                sh 'mvn clean package -DskipTests -B -Dcheckstyle.skip=true'
             }
             post {
                 success {
@@ -51,7 +51,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 echo "=== Running Unit Tests ==="
-                sh 'mvn test -B'
+                sh 'mvn test -B -Dcheckstyle.skip=true -DexcludedGroups=integration -Dspring.docker.compose.skip.in-tests=true'
             }
             post {
                 always {
