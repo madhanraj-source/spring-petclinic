@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: /target/
+    destination: /opt/petclinic/
+  - source: /scripts/
+    destination: /opt/petclinic/scripts/
+
+permissions:
+  - object: /opt/petclinic/
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 120
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_application.sh
+      timeout: 60
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_application.sh
+      timeout: 120
+      runas: root
